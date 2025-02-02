@@ -32,30 +32,6 @@
     compile = ["g++", "-O2", "-std=c++17", "-DEVAL", "-march=native", "-o", "main", "main.cpp", "-I", "/opt/ac-library"]
     exec = ["./main"]
 [[langs]]
-    id = "rust"
-    name = "Rust"
-    version = "rustc(1.71.1 edition 2021)"
-    source = "main.rs"
-    image_name = "library-checker-images-rust"
-    compile = ["rustc", "--edition", "2021", "-C", "opt-level=3", "main.rs"]
-    exec = ["./main"]
-[[langs]]
-    id = "d"
-    name = "LDC2"
-    version = "ldc2 1.29.0"
-    source = "main.d"
-    image_name = "library-checker-images-ldc"
-    compile = ["ldc2", "-O", "-release", "main.d"]
-    exec = ["./main"]
-[[langs]]
-    id = "java"
-    name = "Java"
-    version = "openjdk 17"
-    source = "Main.java"
-    image_name = "library-checker-images-java"
-    compile = ["javac", "Main.java"]
-    exec = ["java", "-Xss1G", "-Xmx1G", "Main"]
-[[langs]]
     id = "python3"
     name = "Python3"
     version = "python3.12 + numpy + scipy"
@@ -71,59 +47,83 @@
     image_name = "library-checker-images-pypy"
     compile = ["pypy3", "-c", "'print(1)'"]
     exec = ["pypy3", "main.py"]
-[[langs]]
-    id = "haskell"
-    name = "GHC"
-    version = "ghc 9.0.2"
-    source = "main.hs"
-    image_name = "library-checker-images-haskell"
-    compile = ["ghc", "main.hs", "-O2"]
-    exec = ["./main"]
-[[langs]]
-    id = "csharp"
-    name = "C#"
-    version = "dotnet 7.0"
-    source = "Program.cs"
-    image_name = "library-checker-images-csharp"
-    compile = ["sh", "-c", "cp -r /opt/C-Sharp C-Sharp && cp Program.cs C-Sharp/Program.cs && dotnet publish C-Sharp -c Release -r linux-x64 -o bin"]
-    exec = ["./bin/C-Sharp"]
-[[langs]]
-    id = "go"
-    name = "Go"
-    version = "go 1.23.5"
-    source = "main.go"
-    image_name = "library-checker-images-golang"
-    compile = ["go", "build", "main.go"]
-    exec = ["./main"]
-[[langs]]
-    id = "lisp"
-    name = "Common Lisp"
-    version = "sbcl 2.1.5"
-    source = "main.lisp"
-    image_name = "library-checker-images-lisp"
-    compile = ["sbcl", "--noinform", "--eval", "(compile-file \"main.lisp\")", "--quit"]
-    exec = ["sbcl", "--control-stack-size", "1GB", "--script", "main.fasl"]
-[[langs]]
-    id = "crystal"
-    name = "Crystal"
-    version = "crystal 1.9.1"
-    source = "main.cr"
-    image_name = "library-checker-images-crystal"
-    compile = ["crystal", "build", "--release", "--no-debug", "--no-color", "-o", "./a.out", "./main.cr"]
-    exec = ["./a.out"]
-[[langs]]
-    id = "ruby"
-    name = "Ruby"
-    version = "ruby 2.7.1"
-    source = "main.rb"
-    image_name = "library-checker-images-ruby"
-    compile = ["ruby", "-w", "-c", "main.rb"]
-    exec = ["ruby", "main.rb"]
-[[langs]]
-    id = "ruby3"
-    name = "Ruby3"
-    version = "ruby 3.4.1"
-    source = "main.rb"
-    image_name = "library-checker-images-ruby3"
-    compile = ["ruby", "-w", "-c", "main.rb"]
-    exec = ["ruby", "main.rb"]
+# [[langs]]
+#     id = "rust"
+#     name = "Rust"
+#     version = "rustc(1.71.1 edition 2021)"
+#     source = "main.rs"
+#     image_name = "library-checker-images-rust"
+#     compile = ["rustc", "--edition", "2021", "-C", "opt-level=3", "main.rs"]
+#     exec = ["./main"]
+# [[langs]]
+#     id = "d"
+#     name = "LDC2"
+#     version = "ldc2 1.29.0"
+#     source = "main.d"
+#     image_name = "library-checker-images-ldc"
+#     compile = ["ldc2", "-O", "-release", "main.d"]
+#     exec = ["./main"]
+# [[langs]]
+#     id = "java"
+#     name = "Java"
+#     version = "openjdk 17"
+#     source = "Main.java"
+#     image_name = "library-checker-images-java"
+#     compile = ["javac", "Main.java"]
+#     exec = ["java", "-Xss1G", "-Xmx1G", "Main"]
+# [[langs]]
+#     id = "haskell"
+#     name = "GHC"
+#     version = "ghc 9.0.2"
+#     source = "main.hs"
+#     image_name = "library-checker-images-haskell"
+#     compile = ["ghc", "main.hs", "-O2"]
+#     exec = ["./main"]
+# [[langs]]
+#     id = "csharp"
+#     name = "C#"
+#     version = "dotnet 7.0"
+#     source = "Program.cs"
+#     image_name = "library-checker-images-csharp"
+#     compile = ["sh", "-c", "cp -r /opt/C-Sharp C-Sharp && cp Program.cs C-Sharp/Program.cs && dotnet publish C-Sharp -c Release -r linux-x64 -o bin"]
+#     exec = ["./bin/C-Sharp"]
+# [[langs]]
+#     id = "go"
+#     name = "Go"
+#     version = "go 1.23.5"
+#     source = "main.go"
+#     image_name = "library-checker-images-golang"
+#     compile = ["go", "build", "main.go"]
+#     exec = ["./main"]
+# [[langs]]
+#     id = "lisp"
+#     name = "Common Lisp"
+#     version = "sbcl 2.1.5"
+#     source = "main.lisp"
+#     image_name = "library-checker-images-lisp"
+#     compile = ["sbcl", "--noinform", "--eval", "(compile-file \"main.lisp\")", "--quit"]
+#     exec = ["sbcl", "--control-stack-size", "1GB", "--script", "main.fasl"]
+# [[langs]]
+#     id = "crystal"
+#     name = "Crystal"
+#     version = "crystal 1.9.1"
+#     source = "main.cr"
+#     image_name = "library-checker-images-crystal"
+#     compile = ["crystal", "build", "--release", "--no-debug", "--no-color", "-o", "./a.out", "./main.cr"]
+#     exec = ["./a.out"]
+# [[langs]]
+#     id = "ruby"
+#     name = "Ruby"
+#     version = "ruby 2.7.1"
+#     source = "main.rb"
+#     image_name = "library-checker-images-ruby"
+#     compile = ["ruby", "-w", "-c", "main.rb"]
+#     exec = ["ruby", "main.rb"]
+# [[langs]]
+#     id = "ruby3"
+#     name = "Ruby3"
+#     version = "ruby 3.4.1"
+#     source = "main.rb"
+#     image_name = "library-checker-images-ruby3"
+#     compile = ["ruby", "-w", "-c", "main.rb"]
+#     exec = ["ruby", "main.rb"]
